@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>GoodnAIght</title>
+        <link rel="stylesheet" type="text/css" href="style/style.css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    </head>
+    <body>
+        <div class="container">
+            <div id="toolbarID" class="toolbarPanel slideHidden">
+                <!-- Navigācijas josla kurā var staigāt pa jau saģenerētiem stāstiem vai atlasīt opciju izveidot jaunu. -->
+                <div id="newStorySection">
+                    <!-- Šī opcija aizved uz jauna stāsta ģenerēšanu lapu. -->
+                    <a id="newStorySection_a" class="toolItem not-selected" href="index.html">
+                        <img src="img/plus.png" alt="plus.png">
+                        <p>New story</p>
+                    </a>
+                </div>
+                <div id="seperator"></div>
+                <div class="storyItem">
+                    <a id="story1" class="toolItem selected" href="#">
+                        <img src="img/file_on.png" alt="file_on.png">
+                        <p>Big chungus</p>
+                    </a>
+                </div>
+                <div class="storyItem">
+                    <a id="story2" class="toolItem not-selected" href="#">
+                        <img src="img/file_on.png" alt="file_on.png">
+                        <p>Mountins</p>
+                    </a>
+                </div>
+                <div class="storyItem">
+                    <a id="story3" class="toolItem not-selected" href="#">
+                        <img src="img/file_on.png" alt="file_on.png">
+                        <p>Amugus</p>
+                    </a>
+                </div>
+            </div>
+            <button id="filler" class="hidden" onclick="toggleToolbar()"></button><!-- Šī poga ir paredzēta tikai mobīlo ierīču pārlūkiem, datora versijā tā netiek uzrādīta. Tās mērķis ir dot veidu kā aizvērt navigācijas paneli -->
+            <div id="toolbarButtonContainer">
+                <!-- Šī poga ir paredzēta tikai mobīlo ierīču pārlūkiem, datora versijā tā netiek uzrādīta. Tās mērķis ir atvērt navigācijas paneli. -->
+                <button id="toolbarButtonOpen" class="display" onclick="toggleToolbar()">
+                    <img src="img/box_list.png" alt="box_list.png">
+                </button>
+            </div>
+            <div class="mainPanel">
+                <div id="storyPanel">
+                    <!-- Šeit vajadzēs ievietot jau ģenerēta stāsta nosaukums, ja tiek izveidots veids kā glabāt tos. -->
+                    <h3>Title:</h3>
+                    <h1 id="storyTitle">Big chungus</h1>
+
+                    <!-- Šeit vajadzēs ievietot jau ģenerēta stāstu, ja tiek izveidots veids kā glabāt tos. -->
+                    <h3>Story:</h3>
+                    <p id="storyContent">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere, mi id convallis facilisis, orci orci faucibus tellus, vitae euismod ligula lorem non metus. Aliquam tincidunt, lectus sit amet condimentum tincidunt,
+                        nulla sapien blandit sem, vitae vestibulum eros lectus non dui. Vestibulum hendrerit augue eu ornare tempor. Pellentesque auctor tempus efficitur. Ut dignissim ante turpis, eget convallis augue mattis in. Ut a est non
+                        sem cursus ultricies at non ligula. In tincidunt dignissim ullamcorper.
+                        <br><br>
+                        Sed ullamcorper felis ut consequat semper. Aliquam cursus malesuada dui, in dignissim nisl aliquet vel. Vestibulum sagittis lacinia elit vel vulputate. Mauris eu quam dui. Etiam sollicitudin, tellus tempor placerat
+                        vestibulum, magna nibh suscipit ex, sed maximus tortor dolor id massa. Duis posuere eros id elit efficitur fringilla. Vivamus non metus eget mauris auctor lobortis.
+                        <br><br>
+                        Aenean congue augue et nibh porttitor imperdiet non eu justo. Integer eget malesuada neque. Aliquam sit amet metus consequat, sodales purus eu, lobortis leo. Aliquam vitae imperdiet eros, id rutrum velit. Nunc ac
+                        dolor tincidunt, molestie lacus quis, tristique turpis. Quisque lobortis dui ligula, sit amet sollicitudin purus tincidunt sit amet. Cras tempor non risus nec laoreet. Etiam ullamcorper tempor neque commodo commodo.
+                        Nunc semper ullamcorper posuere. Integer a dui euismod, congue metus sed, efficitur urna. Ut egestas at nulla consequat vehicula. Sed ut turpis leo.
+                        <br><br>
+                        Phasellus erat mi, tempus id efficitur et, pretium vitae tellus. Aenean arcu libero, pulvinar at mollis sit amet, pretium ac magna. Cras a sapien lectus. Aliquam quis massa tellus. Praesent laoreet hendrerit blandit. Nunc
+                        consequat bibendum dolor, in iaculis libero aliquam non. Cras tincidunt nibh id nunc tempor, non accumsan lorem consequat.
+                        <br><br>
+                        Fusce finibus tellus ante, quis elementum lorem aliquam at. Mauris vulputate arcu ac ipsum fermentum, sed vestibulum justo ultricies. Nunc lobortis ante neque, quis feugiat leo dictum non. Sed ut dui nibh. Phasellus
+                        congue enim at nisl fermentum venenatis. Sed at arcu felis. Aliquam egestas risus eros, vel faucibus neque facilisis cursus. In felis dolor, pharetra quis tincidunt ullamcorper, finibus sed magna.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="scripts/toolbar-transitions.js"></script>
+</html>

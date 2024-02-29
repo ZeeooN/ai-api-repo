@@ -1,13 +1,74 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
-  </body>
+    <head>
+        <title>GoodnAIght</title>
+        <link rel="stylesheet" type="text/css" href="style/style.css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    </head>
+    <body>
+        <div class="container">
+            <div id="toolbarID" class="toolbarPanel slideHidden">
+                <!-- Navigācijas josla kurā var staigāt pa jau saģenerētiem stāstiem vai atlasīt opciju izveidot jaunu. -->
+                <div id="newStorySection">
+                    <!-- Šī opcija aizved uz jauna stāsta ģenerēšanu lapu. -->
+                    <a id="newStorySection_a" class="toolItem selected" href="index.html">
+                        <img src="img/plus.png" alt="plus.png">
+                        <p>New story</p>
+                    </a>
+                </div>
+                <div id="seperator"></div><!-- Atdaloša josla starp stāsta izveides opciju un pašiem izveidotajiem stāstiem. -->
+                <!-- Tālāk apakšā atrodas visi stāsti, kas ir saglabāti (pašlaicīgi ir tikai, lai demonstrētu, kā tas varētu izskatīties), tas ir ja tiks izstrādāts veids kā glabāt tos. -->
+                <!-- Ja arī tiek implementēts veids kā tie tiks glabāti, tad vajadzēs šos 'div' tagus pārveidot par 'form' tagu, ja tiks izmantots backends -->
+                 <div class="storyItem">
+                    <a id="story1" class="toolItem not-selected" href="story-view.html">
+                        <img src="img/file_on.png" alt="file_on.png">
+                        <p>Big chungus</p>
+                    </a>
+                </div>
+                <div class="storyItem">
+                    <a id="story2" class="toolItem not-selected" href="#">
+                        <img src="img/file_on.png" alt="file_on.png">
+                        <p>Mountins</p>
+                    </a>
+                </div>
+                <div class="storyItem">
+                    <a id="story3" class="toolItem not-selected" href="#">
+                        <img src="img/file_on.png" alt="file_on.png">
+                        <p>Amugus</p>
+                    </a>
+                </div>
+            </div>
+            <button id="filler" class="hidden" onclick="toggleToolbar()"></button><!-- Šī poga ir paredzēta tikai mobīlo ierīču pārlūkiem, datora versijā tā netiek uzrādīta. Tās mērķis ir dot veidu kā aizvērt navigācijas paneli -->
+            <div id="toolbarButtonContainer">
+                 <!-- Šī poga ir paredzēta tikai mobīlo ierīču pārlūkiem, datora versijā tā netiek uzrādīta. Tās mērķis ir atvērt navigācijas paneli. -->
+                <button id="toolbarButtonOpen" class="display" onclick="toggleToolbar()">
+                    <img src="img/box_list.png" alt="box_list.png">
+                </button>
+            </div>
+            <div class="mainPanel">
+                <div id="createStoryPromt">
+                    <!-- Stāsta izveides panelis -->
+                    <h1>GoodnAIght</h1>
+                    <h3>Create a bedtime story the easy way</h3>
+                    <div id="inputStoryTheme" class="inputBox_small">
+                        <p>Story theme:</p>
+                        <input placeholder="Wizards..." type="text">
+                    </div>
+                    <div id="inputStoryCharecters" class="inputBox_small">
+                        <p>Main charecter/-s:</p>
+                        <input placeholder="Olaf, Bob, Carl..." type="text">
+                    </div>
+                    <div id="inputStoryDesc" class="inputBox_large">
+                        <p>Story description:</p>
+                        <textarea placeholder="Plot points etc..."></textarea>
+                    </div>
+                    <div id="createStoryForm">
+                        <button id="createStoryButton" class="button_large">Create story</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="scripts/toolbar-transitions.js"></script>
 </html>
