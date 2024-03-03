@@ -19,28 +19,41 @@ async function initServer() {
 
     app.use('*', async (req, res, next) => {
         try {
+            // Stores the current requests url
             const url = req.originalUrl;
-            console.log(req.originalUrl);
 
-            let template = await fs.readFile('./dist/client/index.html', 'utf-8');
-            template = await vite.transformIndexHtml(url, template);
+            if ((url !== '/index.html') && (url !== '/story-view.html') && (url !== '/')) {
+                // This is the part that gets executed if an api call or smth like that.
+                next();
+            } else {
+                // This is where the rendered pages should get processed if ssr is used.
+                let template = await fs.readFile('./dist/client/index.html', 'utf-8');
+                template = await vite.transformIndexHtml(url, template);
 
-            const { rend } = (await vite.ssrLoadModule('./server.js')).render;
-            //const { rend } = import('./dist/server/server.js');
+                // TODO: Server side loading should be fixed. Or an alternative method of injecting html should be used.
+                //const { rend } = (await vite.ssrLoadModule('./server.js')).render;
+                //const { rend } = import('./dist/server/server.js');
+                //const appHtml = await rend(url);
+                //const html = template.replace('<!--THE-PART-WHERE-TO-INJECT-->', appHtml);
+                const html = template;
 
-            const appHtml = await rend(url);
-
-            const html = template.replace('<!--THE-PART-WHERE-TO-INJECT-->', appHtml);
-
-            res.setHeader("Content-Type", "text/html");
-            res.writeHead(200);
-            res.write(html);
-            res.end();
+                res.setHeader("Content-Type", "text/html");
+                res.writeHead(200);
+                res.write(html);
+                res.end();
+            }
         } catch (e) {
             vite?.ssrFixStacktrace(e);
             console.log(e.stack);
             res.status(500).end(e.stack);
         }
+    });
+
+    // A possible way how an api call could be made!?
+    app.get('/hello', (req, res) => {
+        res.setHeader('Content-Type', 'application/json').writeHead(200);
+        res.write(JSON.stringify({ Hello: "World" }));
+        res.end();
     });
 
     app.listen(port, () => {
