@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:server": "node server",
     "build": "vite build",
     "preview": "vite preview",
-    "full:build": "npm run build:client && npm run build:server",
-    "build:client": "vite build --ssrManifest --outDir dist/client",
-    "build:server": "vite build --ssr server.js --outDir dist/server"
+    "ssr:build": "npm run ssr:build:client && npm run ssr:build:server",
+    "ssr:build:client": "vite build --ssrManifest --outDir dist/client",
+    "ssr:build:server": "vite build --ssr server.js --outDir dist/server"
   },
   "devDependencies": {
     "vite": "^5.1.4"

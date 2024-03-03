@@ -1,12 +1,11 @@
 import fs from 'node:fs/promises';
-import path from 'path';
 import express from 'express';
-import { fileURLToPath } from 'url';
-import { createServer } from "vite";
+import { createServer } from 'vite';
 
-const port = 5173;
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+// Server port.
+const port = 5713;
 
+// Function to initialize the server.
 async function initServer() {
     const app = express();
 
@@ -21,12 +20,14 @@ async function initServer() {
     app.use('*', async (req, res, next) => {
         try {
             const url = req.originalUrl;
+            console.log(req.originalUrl);
 
             let template = await fs.readFile('./dist/client/index.html', 'utf-8');
             template = await vite.transformIndexHtml(url, template);
 
-            //const { rend } = await vite.ssrLoadModule('./main.js');
-            const { rend } = import('./dist/server/server.js');
+            const { rend } = (await vite.ssrLoadModule('./server.js')).render;
+            //const { rend } = import('./dist/server/server.js');
+
             const appHtml = await rend(url);
 
             const html = template.replace('<!--THE-PART-WHERE-TO-INJECT-->', appHtml);
@@ -47,12 +48,5 @@ async function initServer() {
     });
 }
 
-app.get('/api/hello', (res, req) => {
-    res.setHeader("Content-Type", "application/json");
-    res.writeHead(200);
-    res.write(JSON.stringify({ hello: "world" }));
-    res.end();
-});
-
-// Start server
+// Call 'initServer' function to launch the server.
 initServer();
